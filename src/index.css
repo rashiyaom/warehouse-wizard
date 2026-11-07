@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=SF+Pro+Display:wght@300;400;500;600;700;800;900&display=swap');
+
+/* stylelint-disable at-rule-no-unknown */
+/* Keep Tailwind directives for the build; disable the linter rule that flags unknown at-rules */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+@layer base {
+  :root {
+    /* Apple-inspired minimal color palette */
+    --background: 0 0% 99%;
+    --foreground: 0 0% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+
+    --primary: 221 83% 53%; /* Apple Blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84% 60%; /* Apple Red */
+    --destructive-foreground: 0 0% 100%;
+
+    --warning: 35 91% 65%; /* Apple Orange */
+    --warning-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%; /* Apple Green */
+    --success-foreground: 0 0% 100%;
+
+    --info: 221 83% 53%; /* Apple Blue */
+    --info-foreground: 0 0% 100%;
+
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 221 83% 53%;
+
+    --radius: 12px; /* Apple-style larger radius */
+
+    /* Sidebar with Apple-style translucency */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 0 0% 93%;
+    --sidebar-ring: 221 83% 53%;
+
+    /* Chart colors inspired by Apple's design */
+    --chart-1: 221 83% 53%; /* Blue */
+    --chart-2: 142 71% 45%; /* Green */
+    --chart-3: 35 91% 65%;  /* Orange */
+    --chart-4: 0 84% 60%;   /* Red */
+    --chart-5: 271 81% 56%; /* Purple */
+    --chart-6: 196 75% 46%; /* Teal */
+  }
+  .dark {
+    --background: 0 0% 9%;
+    --foreground: 0 0% 98%;
+    
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 63%;
+    
+    --accent: 0 0% 14%;
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 221 83% 53%;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-border: 0 0% 15%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  }
+
+  /* Custom scrollbar - Apple style */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+@layer utilities {
+  /* Apple-inspired glass morphism card */
+  .glass-card {
+    @apply bg-card/90 backdrop-blur-xl border border-border/50 shadow-lg;
+  }
+
+  /* Minimal stat card with Apple-style design */
+  .stat-card {
+    @apply bg-card/70 backdrop-blur-xl rounded-2xl border border-border/30 p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:bg-card/80 hover:border-primary/20;
+  }
+
+  /* Apple-style sidebar items */
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-all duration-200 font-medium;
+  }
+
+  .sidebar-item-active {
+    @apply bg-sidebar-accent text-sidebar-primary font-semibold shadow-sm;
+  }
+
+  /* Apple-style button variants */
+  .btn-minimal {
+    @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn-minimal bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply btn-minimal bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+
+  .btn-ghost {
+    @apply btn-minimal hover:bg-accent hover:text-accent-foreground;
+  }
+
+  /* Chart container with Apple styling */
+  .chart-container {
+    @apply bg-card/50 backdrop-blur-xl rounded-2xl border border-border/30 p-6 shadow-sm;
+  }
+
+  /* Apple-style input */
+  .input-minimal {
+    @apply flex h-10 w-full rounded-xl border border-input bg-background/50 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 backdrop-blur-sm;
+  }
+
+  /* Smooth animations */
+  .animate-slide-up {
+    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
